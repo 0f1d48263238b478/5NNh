@@ -1,0 +1,99 @@
+<!--
+    Author: Anonymous
+    
+    Date:   2024-09-26
+-->
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Educon2025 Peer Review Version of WebSerial Orientation Visualizer</title>
+<script type="importmap">
+{
+    "imports": {
+        "three":            "https://cdn.jsdelivr.net/npm/three@0.166.1/build/three.module.min.js",
+        "three/addons/":    "https://cdn.jsdelivr.net/npm/three@0.166.1/examples/jsm/"
+    }
+}
+</script>
+<style type="text/css">
+    pre {
+        display:block;
+        padding:5px;
+        margin:0 0 5px;
+        font-size:13px;
+        line-height:1.42857143;
+        color:#333;
+        word-break: break-all;
+        word-wrap:break-word;
+        background-color:#f5f5f5;
+        border:1px solid #ccc;
+        border-radius:4px;
+    }
+    
+    div.app{
+        display: block;
+        margin: auto;
+        max-width: 640px;
+        width: 640px;
+        text-align: center;
+    }
+    
+    div.app3d{
+        display: block;
+        margin: auto;
+        max-width: 640px;
+        width: 640px;
+        text-align: center;
+    }
+    canvas.app3d{
+        width: 640px;
+        height: 1000px;
+    }
+    
+</style>
+</head>
+<body>
+<div class="app" id="app">
+    <h1>Educon2025 Peer Review Version of WebSerial Orientation Visualizer</h1>
+    <div class="app3d" id="3D">
+    <canvas class="app3d" id="canv3d"></canvas>
+    </div>
+    <br/>
+    <p>
+    <table id="serialTable" border style="table-layout: fixed; width: 100%;">
+        <tr><th width="20%" align="left">Serial Status: </th>
+            <td width="20%"  align="left"><pre id="serials">Disconnected</pre></td>
+            <td width="20%" align="center"><button width="100%" onClick="connect()" id="button_connect" label="connect">Connect</button></td>
+            <td width="20%" align="center"><button width="100%" onClick="demo()"    label="demo">Demo</button></td>
+            <td width="20%" align="center"><button width="100%" onClick="disconnect()" label="disconnect">Stop</button></td>
+        </tr>
+        <tr><th width="20%" align="left">Roll:</th>  <td align="right"><pre id="roll">N/A</pre></td><td rowspan="3" colspan="3" align="center"><canvas width="350px" id="canvas_ai"></canvas></td></tr>
+        <tr><th width="20%" align="left">Pitch:</th> <td align="right"><pre id="pitch">N/A</pre></td>                                                         </tr>
+        <tr><th width="20%" align="left">Yaw:</th>   <td align="right"><pre id="yaw">N/A</pre></td>                                                           </tr>
+        <tr><th width="20%" align="left">Raw:</th>   <td align="right" colspan="4"><pre id="raw">N/A</pre></td>                                               </tr>
+    </table>
+    </p>
+    <br/>
+    <hr/>
+<p><b>Usage</b>: Connect to a serial port (115200 8N1) receiving IMU data by pressing the <em>Connect</em> button.</p>
+<br/>
+<p>
+    <p>The data is requried as lines matching the following regex:</p><br/>
+    <pre>^ROLL=([- ]?[0-9.]+) PITCH=([- ]?[0-9.]+) YAW=([- ]?[0-9.]+)$</pre>
+</p>
+<br>
+<p><b>Demo Mode</b>:  Press the <em>Demo</em> button to animate the drone.</p>
+<br/>
+<p><b>Smartphone Demo</b>: Open this page on a smartphone to visualize the phone's IMU orientation by scanning this QR code (iOS users might need to still press the <em>Demo</em> button):<br/>
+    <a href="https://0f1d48263238b478.github.io/5NNh/?demo=true"><img src="img/qrcode.png"/></a>
+<hr/>
+<p>Based on <a href="https://threejs.org/">three.js</a></p>
+<p>CrazyFlie 3D model adapted from <a href="https://github.com/rshum19/Crazyflie-CAD">Roberto Shu's Github</a></p>
+</div>
+<script type="module" src="js/3d.js"></script>
+<script type="text/javascript" src="js/ai.js"></script>
+<script type="text/javascript" src="js/serial.js"></script>
+</body>
+</html>
+
